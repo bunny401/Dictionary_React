@@ -1,0 +1,79 @@
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<div class="firstpage">
+    <div class="header">
+        <h1 style="background-color:rgb(25, 46, 235); font-family:'Courier New', Courier, monospace">Your Dictionary Application <i class="fa fa-paper-plane-o"></i></h1> 
+        <p style="background-color:tomato; font-size:95%;" ><i>Please type the word you want to search</i></p>
+        <h4 id="word" name="word"><b>{{word}}</b></h4>
+    </div>
+
+
+    <div class="langdroplist">
+        <select [(ngModel)]="selectedValue" name="languages" id="languages">
+            <option value="">Please choose the Target Language</option>
+            <option *ngFor="let l of langArray" [ngValue]="l">{{l}}</option>
+        </select>
+    </div>
+
+    <div class="wrapsearch">
+        <div class="searchword">
+            <input [(ngModel)]="word" type="text" class="wordsearchTerm" placeholder="Type the word!">
+            <button (click)="getData()" type="submit" class="wordsearchButton">
+                <i class="fa fa-search-plus"></i>
+            </button>
+            
+        </div>
+    </div>
+
+
+
+        <div class="card">
+        <div class="cardContent">
+            <div class="container">
+                <div class="col-sm">
+
+                    <div class="w=100">
+                        <h5 name="translation" *ngIf="fetched == true">
+                            Translation: {{translation}}
+                        </h5>
+                        <h5 name="synonyms" *ngIf="fetched == true">
+                            Synonyms:
+                        </h5>
+                        <ul id="myList">
+                            <li *ngFor="let syn of synonyms">{{ syn.text }}</li>
+                        </ul>
+                        <h5 name="meanings" *ngIf="fetched == true">
+                            Meanings:
+                        </h5>
+                        <ul id="myList">
+                            <li *ngFor="let mean of meanings">{{ mean.text }}</li>
+                        </ul>
+                    </div>
+
+                    <div class="w=100">
+
+                        <h5 name="examples-source" *ngIf="fetched == true">
+                            Examples: {{sourceLang.toUpperCase()}}
+                        </h5>
+                        <ul>
+                            <li *ngFor="let ex of examples">{{ ex.text }}</li>
+                        </ul>
+                    </div>
+                    <div class="w=100">
+                        <h5 name="examples-target" *ngIf="fetched == true">
+                            Examples: {{targetLang.toUpperCase()}}
+                        </h5>
+                        <ul>
+                            <li *ngFor="let ex of examples">{{ ex.tr[0].text }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
