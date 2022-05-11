@@ -1,6 +1,15 @@
 # DictionaryApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
+The dictionary application is a simple client-side application made using Angular. This
+application is a small-scale application/single page application that can be used to
+search the meaning of the word in the list of the languages provided. It can also
+translate the word given in any language and provides it synonyms as well. We have
+used Yandex API as our backend and frontend application that we have created by
+ourselves. Main Functionality of the application is to take the word given any language
+and provide the meanings and synonyms of that word in the other chosen language. For
+the front end design Bootstrap was used and for the backend communication Angular
+was used.
 
 ## Development server
 
