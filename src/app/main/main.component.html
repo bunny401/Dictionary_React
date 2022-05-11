@@ -1,0 +1,106 @@
+<!-- Font Awesome is the Internet's icon library and toolkit, used by millions of designers, developers, and content creators. -->
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS. -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Bootstrap is a free and open source front end development framework for the creation of websites and web apps. The Bootstrap framework is built on HTML, CSS, and JavaScript (JS) to
+ facilitate the development of responsive,  -->
+
+ <!-- hash ensures that the file was unmodified and contains expected data -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- this shows the starting page of our application. It shous the
+background color, we can set the font as well. we have se the
+heading h1 and applied different styles to it -->
+<div class="firstpage">
+    <div class="header">
+        <h1 style="background-color:rgb(25, 46, 235); font-family:'Courier New', Courier, monospace">Your Dictionary Application <i class="fa fa-paper-plane-o"></i></h1> 
+        <p style="background-color:tomato; font-size:95%;" ><i>Please type the word you want to search</i></p>
+        <h4 id="sentence" name="sentence"><b>{{sentence}}</b></h4>
+    </div>
+
+    <!-- This part of the html shows the dropdown menu which appers when we click on the part 
+    where chose your target language is written. 
+  The dropdown menu contains all the languages wich we want to use  -->
+
+    <div class="langdroplist">
+        <!-- ngModel is a directive which binds input, select and textarea,
+         and stores the required user value in a variable and we can use that variable 
+         whenever we require that value -->
+        <select [(ngModel)]="value_selected" name="languages" id="languages">
+            <!-- displays the text of chosing the target language -->
+            <option value="">Please choose the Target Language</option>
+            <!-- in main.component.html. *ngFor is for repeatedly displaying our items
+            [ngValue] directive allows for values other than strings in our drop downs. -->
+            <option *ngFor="let l of langArray" [ngValue]="l">{{l}}</option>
+        </select>
+    </div>
+
+ <!--This part of html display that part where we type the word in the required language
+ and that word also apperas above where we can see it clearly  -->
+    <div class="wrapsearch">
+        <div class="searchword">
+            <input [(ngModel)]="sentence" type="text" class="wordsearchTerm" placeholder="Type the word!">
+            <!-- we have created button as well which contains a search icon
+            we can click on it after we are done with the typing -->
+            <button (click)="getting_the_Data()" type="submit" class="wordsearchButton">
+                <!-- Using the font awesome icons throught the
+                library which we have imported abve as explained -->
+                <i class="fa fa-search-plus"></i>
+            </button>
+                                                              
+        </div>
+    </div>
+
+ <!-- This is the class card which shows the explaination of our word
+ For example its translation synonyms, its meaning etc. -->
+
+         <!-- Second div open -->
+         <div class="card">  
+            <!-- third div open -->
+         <div class="cardContent">
+             <!-- fourth div open -->
+            <div class="container">
+                <!-- fifth div open -->
+                <!-- If you choose col-sm, then the columns will stack when the width is < 768px -->
+                <div class="col-sm">
+                    <!-- w-100 can be used responsively, 
+                    this is possible by keeping all the cols in a single row -->
+
+                    <div class="w=100">
+                        <!-- It does the translation from one language to another -->
+                        <h5 name="translation" *ngIf="taken == true">
+                            Translation: {{interpret}}
+                        </h5>
+                        <!-- Displays the sysnonyms of the word in the preferred langua
+                        ge -->
+                        <h5 name="synonyms" *ngIf="taken == true">
+                            Synonyms:
+                        </h5>
+                        <ul id="myList">
+                            <li *ngFor="let syn of same">{{ syn.text }}</li>
+                        </ul>
+                        <!-- Dispalys the meaning of the word in english so that 
+                        we can understand -->
+                        <h5 name="meanings" *ngIf="taken == true">
+                            Meanings:
+                        </h5>
+                        <!-- to repeatdely get the meaning of the word in english to display
+                         -->
+                        <ul id="myList">
+                            <li *ngFor="let mean of  illustration">{{ mean.text }}</li>
+                        </ul>
+                    </div>
+
+                    <!-- fifth div close -->
+                </div>
+                <!-- fourth div close -->
+            </div>
+            <!-- third div close -->
+        </div>
+        <!-- second div close -->
+        </div>
+        <!-- First div close -->
+</div>
